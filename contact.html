@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">      <!-- Responsive scaling for mobile devices -->
+    <link rel="icon" type="favicon" href="img/logo.jpg">
+    <!-- SEO START -->
+        <title>Kontakt - DLB Arkitekter</title>     <!-- SEO page title -->
+        <meta name="description" content="Find vores kontaktoplysninger her. DLB Arkitekter står på et solidt netværk bestående af mange forskellige aktører.">    <!-- SEO description -->
+        <meta name="theme-color" content="#F5F5F5">      <!-- Theme color for SoMe -->
+        <!-- vvv Open Graph Protocol - Source: https://ogp.me/ -->
+            <meta property="og:image" content="https://exam.mikkl.info/img/thumbnails/SoMe/booking.jpg" />     <!-- Image to feed SoMe previews -->
+            <meta property="og:image:width" content="750" />   
+            <meta property="og:image:height" content="750" />
+            <meta property="og:locale" content="da_DK">
+            <meta property="og:type" content="website">     <!-- Define which type of content this website is -->
+            <meta property="og:title" content="Kontakt DLB Arkitekter">   <!-- Title for SoMe previews -->
+            <meta property="og:description" content="Find vores kontaktoplysninger her. DLB Arkitekter står på et solidt netværk bestående af mange forskellige aktører.">     <!-- Description for SoMe previews -->
+            <meta property="og:url" content="https://DLBark.dk">    <!-- Clean up URL for SoMe previews -->
+            <meta property="og:site_name" content="DLB Arkitekter ApS">
+        <!-- ^^^ End of Open Graph Protocol -->
+    <!-- END OF SEO -->  
+    
+    <!-- LOCAL REFERENCES START -->
+        <link rel="stylesheet" href="style.css">    <!-- Main CSS reference -->
+        <script src="js/main.js"></script>  <!-- Main JS reference -->
+        <script defer src="js/contact-form.js"></script>      <!-- Coded User Journey JS reference -->
+    <!-- END OF LOCAL REFERENCES -->
+
+</head>
+
+
+
+
+<body>
+
+    <nav id="burger-content" class="hidden">    <!-- Mobile full-screen burger menu content - Hidden by defualt -->
+        <div class="container">
+            <a href="index.html" class="logo"> <img src="img/logo.jpg" alt="DLB Arkitekter logo"> DLB Arkitekters logo </a>  <!-- DLB Logo -->
+
+            <ul>
+                <li> <a href="index.html"> <span class="marker"></span> Hjem</a> </li>
+                <li> <a href="projects.html"> <span class="marker"></span> Projekter</a> </li>
+                <li> <a href="services.html"> <span class="marker"></span> Tjenester</a> </li>
+                <li> <a href="booking.html"> <span class="marker"></span> Booking</a> </li>
+                <li> <a href="about.html"> <span class="marker"></span> Om os</a> </li>
+                <li> <a href="contact.html" class="active"> <span class="marker"></span> Kontakt</a> </li>
+            </ul>
+        </div>
+    </nav>
+
+
+    <nav id="main">   <!-- Main navigation -->
+        <div class="container">     <!-- This container fixes issues as the 'nav' tag has 'position: fixed' which likes to fuck with things -->
+            
+            <div class="SoMe">  <!-- SoMe links and icons -->
+                <a href="https://www.facebook.com/DLBARKITEKTERApS" target="_blank" rel="noopener nofollow"> <img src="img/icons/facebook-icon.svg" alt="Facebook icon"> Besøg DLB's Facebookside </a>   <!-- target="_blank" = Open in a new Tab    rel="nofollow" = Tell Google not to follow the link -->
+                <a href="https://www.instagram.com/dlbarkitekter" target="_blank" rel="noopener nofollow"> <img src="img/icons/instagram-icon.svg" alt="Instagram icon"> Besøg DLB's Instagram </a>
+                <a href="https://www.linkedin.com/company/dlbetak-aps/about/" target="_blank" rel="noopener nofollow"> <img src="img/icons/linkedin-icon.svg" alt="LinkedIn icon"> Besøg DLB's LinkedIn-side</a>
+            </div>
+            <!---Icon source: https://www.flaticon.com/-->
+            
+            <ul class="desktop">    <!-- Navigation Menu only visible on Desktop -->
+                <li> <a href="index.html">Hjem</a> </li>
+                <li> <a href="projects.html">Projekter</a> </li>
+                <li> <a href="services.html">Tjenester</a> </li>
+                <li> <a href="booking.html">Booking</a> </li>
+                <li> <a href="about.html">Om os</a> </li>
+                <li> <a href="contact.html" class="active">Kontakt</a> </li>
+            </ul>
+
+            <a href="index.html" class="logo"> <img src="img/logo.jpg" alt="DLB Arkitekter logo"> DLB Arkitekters logo </a>  <!-- DLB Logo -->
+            
+            <button class="burger-menu" onclick="toggleBurgerMenu()"> <img src="img/icons/burger-menu-icon.svg" alt="Burger Menu toggle"> Menu </button>
+        </div>
+    </nav>
+
+
+
+    <main id="find-dlb">
+        <img src="img/contact.jpg" alt="DLB arkitekter arbejder">
+        <section>
+            <h1>Find DLB arkitekter</h1>
+            <p class="textbox">DLB Arkitekter stårpå et solidt netværk bestående af mange forskellige aktører. Vi har etableret gode samarbejder med andre arkitekter, bygningskonstruktører og specialister inden for en række områder samt har etableret et godt samarbejde med en lokal ingeniørvirksomhed, som samlet giver, at vi kan tilbyde alle ressourcer.</p>
+            <div class="info">
+                <a class="container" href="mailto:dlb@dlbark.dk">
+                    <img src="img/icons/mail.svg" alt="Mail ikon">      <!---Icon source: https://www.flaticon.com/-->
+                    <p>E-mail: <br> dlb@dlbark.dk</p>
+                </a>
+                <div class="container">
+                    <img src="img/icons/phone.svg" alt="Telefon ikon">      <!---Icon source: https://www.flaticon.com/-->
+                    <p>Telefon: <br> 22 88 91 35</p>
+                </div>
+                <div class="container">
+                    <img src="img/icons/gps-icon.svg" alt="Telefon ikon" style="padding: 10px;">      <!---Icon source: https://www.flaticon.com/-->
+                    <p>Ahlgade 63, 4300 Holbæk, Danmark
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <section id="contact-info">
+        <h2>Åbningstider</h2>
+        <div class="map-container">
+            <div class="opening-hours">
+                <p>Mandag:</p>      <p>09:00 - 17:00</p>
+                <p>Tirsdag:</p>     <p>09:00 - 17:00</p>
+                <p>Onsdag:</p>      <p>09:00 - 17:00</p>
+                <p>Torsdag:</p>     <p>09:00 - 17:00</p>
+                <p>Fredag:</p>      <p>09:00 - 14:00</p>
+                <p>Lørdag:</p>      <p class="closed">Lukket</p>
+                <p>Søndag:</p>      <p class="closed">Lukket</p>
+            </div>
+
+            <div id="google-maps">
+                <iframe title="Google Maps" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5345.234492493463!2d11.71683849220957!3d55.71689935878245!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46527c1a27747df5%3A0x4d066500da16c00f!2sAhlgade%2063%2C%204300%20Holb%C3%A6k!5e0!3m2!1sda!2sdk!4v1685530336214!5m2!1sda!2sdk" width="1" height="1" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <form id="contact-form" autocomplete="on">
+        <h2>Kontakt os til enhver tid</h2>
+        
+        <div class="flex-container">    <!-- Form items below are built from code samples available from: https://www.w3schools.com/tags/tag_input.asp -->
+            <div class="segment">
+                <label for="name">Navn</label> <span class="required">*</span>
+                <input type="text" id="name" name="name">
+            </div>
+
+            <div class="segment">
+                <label for="email">E-mail</label> <span class="required">*</span>
+                <input type="email" id="email" name="email">
+            </div>
+        </div>
+
+        <div class="segment">
+            <label for="message">Besked</label> <span class="required">*</span>
+            <textarea id="message" name="message" rows="6"></textarea>
+        </div>
+        
+        <input class="button" type="submit" value="Send" aria-label="Send" onclick="endContactFormJourney()">
+    </form>
+
+
+
+    <footer>
+        <section>
+            <div>
+                <h3>Kontakt</h3>
+                <p>22 88 91 35</p>
+            </div>
+
+            <div class="SoMe">
+                <!---Icon source: https://www.flaticon.com/-->
+                <a href="https://www.facebook.com/DLBARKITEKTERApS" target="_blank" rel="noopener nofollow"> <img src="img/icons/facebook-icon.svg" alt="Facebook ikon"> Besøg DLB's Facebookside </a>   <!-- target="_blank" = Open in a new Tab    rel="nofollow" = Tell Google not to follow the link -->
+                <a href="https://www.instagram.com/dlbarkitekter" target="_blank" rel="noopener nofollow"> <img src="img/icons/instagram-icon.svg" alt="Instagram ikon"> Besøg DLB's Instagram </a>
+                <a href="https://www.linkedin.com/company/dlbetak-aps/about/" target="_blank" rel="noopener nofollow"> <img src="img/icons/linkedin-icon.svg" alt="LinkedIn ikon"> Besøg DLB's LinkedIn-side</a>
+            </div>
+
+            <div>
+                <h3>CVR</h3>
+                <p>40743464</p>
+            </div>
+        </section>
+
+        <section class="address">
+            <img src="img/icons/gps-icon.svg" alt="DLB Arkitekter's adresse">
+            <p>Ahlgade 63, 4300 Holbæk, Danmark</p>
+        </section>
+    </footer>
+
+
+</body>
+</html>

@@ -1,0 +1,1360 @@
+/*
+==================================
+    CSS STYLESHEET
+==================================
+
+FYI: I'm only testing this sh*t on Chromium-based Edge because a vast majority uses Chromium no matter the platform.
+Source: https://gs.statcounter.com/browser-market-share
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap');
+
+* {
+    margin: 0;  /* Nuke default margin - it's an annoyance to work with */
+    padding: 0;     /* Nuke default padding as well */
+    box-sizing: border-box;     /* Makes box sizing more logical -- https://developer.mozilla.org/en-US/docs/Web/CSS/box-sizing */
+}
+
+.hidden {      /* To be used as default for items that are to be toggled by JavaScript */
+    display: none;
+}
+
+
+
+/* ====== CSS VARIABLES START ====== */
+
+    :root {             /* CSS Variables work a lot like Components in XD or Swatches in Illustrator, Photoshop, InDesign, etc - If there's a need adjust the colors, this will save a lot of time */
+        /* Fonts */
+            --font: "Montserrat", "Segoe UI", "Helvetica", "Roboto", sans-serif;    /* font-family: var(--font);         Montserrat is the main player, the rest are used as fallback */
+        /* Colors */
+            --color1: #D9D9D9;      /* We're memorizing the color values here so we can define them as "color: var(--color1);" so it'll be easier to change/adjust if needed */
+            --color2: #C28671;
+            --color3: #8A99A0;
+            --color4: #F5F5F5;
+        /* Margins - To streamline left-right margins for misc objects */
+            --default-width: 90%;           /* width: var(--default-width); margin: auto; */
+            --max-page-width: 980px;
+        /* Miscelanious - Sizes of common elements, etc */
+            --nav-icon-size: 28px;          /* size: var(--nav-icon-size); */
+            --default-top-margin: 70px;     /* margin-top: var(--default-top-margin); */
+    }
+
+/* end of css variables */
+
+
+
+
+/* ====== MAIN PAGE ELEMENTS ====== */
+    body {
+        background-color: var(--color4);        /* Changes background color */
+    }
+
+    h1, h2, h3, h4, h5, h6 {        /* Re-use code and style multiple thingies at once */
+        font-family: var(--font);
+        font-weight: 600;
+    }
+
+    h1, h2 {
+        font-size: 1.4em;       /* Adjusts font size for headings */
+    }
+
+    a, p {
+        font-family: var(--font);
+        font-weight: 400;
+    }
+
+    p.textbox {
+        margin: 18px auto;      /* Adds both top and bottom margin specifically to the textbox to simulate double line breaks */
+        font-size: 0.9em;
+        line-height: 1.4em;     /* Fix line height for readability reasons */
+    }
+
+    main {
+        padding-top: calc(var(--default-top-margin) * 2);   /* Adds 10px to Default Margin value for aesthetical reasons */
+    }
+
+    .cta {      /* Call to Action - Consisting of heading and 1-3 buttons */
+        width: var(--default-width);    /* Refers to CSS variable so I only need to define width once */
+        margin: auto;
+        margin-top: var(--default-top-margin);  /* Same here, except for margin-top */
+        text-align: center;     /* Centers the text */
+    }
+
+    .cta .container {
+        display: flex;      /* Easiest, cleanest way to stack elements horizontally */
+        align-items: center;        /* Align items horizontally */
+        justify-content: center;    /* Align items vertically */
+        gap: 20px;      /* Margin between flex elements */
+        margin-top: 10px;   /* Distance itself a little from the heading above */
+    }
+
+    .cta .button, #booking-system .button, #contact-form .button, #about button {
+        font-family: var(--font);
+        display: flex;     /* A tags display improperly; this fixes it */
+        align-items: center;
+        background-color: var(--color3);    /* Refers to CSS variable in :root */
+        color: white;   /* Color = Text color */
+        border: none;
+        text-transform: uppercase;      /*Turn all text into CAPS LOCK */
+        font-weight: 700;   /* Make text more thicc */      /* Yes, I weight shame fonts. Deal with it. 😎 */
+        font-size: 0.8em;       /* Reduce font size - I use EM instead of PX here, as EM is relative and scale better on mobile browsers*/  
+        padding: 10px;
+        letter-spacing: 0.06em;     /* Adds a little spacing between individual letters for legibility reasons */
+        text-decoration: none;
+        transition: 0.2s;    /* Used with hover effect */
+        cursor: pointer;
+        max-width: 170px;
+        height: 50px;
+    }
+
+    .cta .button:last-child, #booking-system .button:last-of-type, #contact-form .button:last-of-type, #about button:last-of-type {   /* First-child = First-born element in a family (group) of elements */
+        border: var(--color3) 2px solid;    /* border (outline): [color] [thickness] [type] */
+        color: var(--color3);       /* Text color */
+        background-color: white;
+    }
+    
+    .cta .button:first-child, #booking-system .button:first-of-type, #contact-form .button:first-of-type, #about button:first-of-type {      /* ^ You get the idea */
+        background-color: var(--color2);
+        color: white;
+        border: none;
+    }
+
+    .cta .button:hover, #booking-system .button:hover, #contact-form .button:hover, #about button:hover {    /* I know it doesn't display correctly on mobile, but f*ck it :D */
+        background-color: black;
+        color: white;
+        transform: scale(1.1);   /* Scale element to 110% on hover */
+    }
+
+/* (end of main page elements) */
+
+
+
+
+
+
+
+/* ====== NAVIGATION MENU START ====== */
+
+    nav#main {                  /* Navigation bar */
+        display: flex;
+        background: white;
+        position: fixed;
+        width: 100%;
+        height: 78px;
+        z-index: 2;     /* Be infront of Burger Menu (when active) which has a Z of 1 - default is 0 */
+        background-color: white;
+    }
+
+    nav#main .container {
+        display: flex;
+        justify-content: center;     /* Properly align contents of the navbar */
+        align-items: center;    /* Vertically align items to the center */
+        width: var(--default-width);
+        max-width: var(--max-page-width);
+        margin: 0 auto; 
+    }
+
+
+    /* --- Social Media buttons --- */
+    
+    nav#main .SoMe {
+        gap: 8px;
+        display: none;
+    }
+
+    nav#main .SoMe a {
+        display: flex;   /* Align SoMe icons correctly */
+        font-size: 0;    /* Hide text only there for the sake of screen readers */
+        max-width: var(--nav-icon-size);
+    }
+
+    nav#main .SoMe img {
+        width: 100%;
+    }
+
+
+    /* --- Logo ---- */
+    
+    nav .logo {
+        text-align: center;
+        width: 100%;
+        margin-left: 32px;
+        font-size: 0;   /* Hide text only there for the sake of screen readers */ 
+    }
+   
+    nav .logo img {
+        width: 100%;
+        max-width: 72px;
+    }
+
+    
+    /* --- Burger Menu --- */
+    
+    nav#main .burger-menu {
+        margin-left: auto;
+        font-size: 0;    /* Hide text only there for the sake of screen readers */
+        max-width: var(--nav-icon-size);    /* Refers to :root variable instead of a fixed number for consistency reasons */
+    }
+
+    nav#main .burger-menu img {
+        width: 100%;
+    }
+    .logo img{
+        max-width: 100px;
+
+    }
+    
+    /* --- Burger Menu toggle --- */
+
+    nav#main .burger-menu {
+        font-size: 0;    /* Hide text only there for screen readers */
+        border: none;
+        background: none;
+        cursor: pointer;    /* Make thing properly appear clickable */
+    }
+
+    nav#main .burger-menu.active {
+        background-color: white;    /* This is actually black, because invert filter below applies to this */
+        border-radius: 12px;    /* Rounded corners */
+        filter: invert(1);      /* Inverts the colors - so everything that's black turns white, vise-versa */
+    }
+
+
+    /* --- Desktop Navigation Menu items --- */
+
+    nav#main .desktop {     /* Desktop navigation strip - Only visible on large screens */
+        display: none;          /* Handled by @media query - must be hidden on Mobile version */
+        justify-content: space-between;    /* Center content horizontally */
+        align-items: center;        /* Center content vertically */
+        list-style-type: none;
+        width: 70%;
+        max-width: 600px;
+    }
+
+    nav#main .desktop a {
+        display: block;     /* Changes visual property to be similar of a div box */
+        text-decoration: none;      /* Removes ugly underline */
+        color: black;       /* Removed link color */
+        font-weight: 600;       /* Makes the font a lil extra thicc */
+        font-size: 0.9em;
+    }
+
+    nav#main .desktop a.active {    /* Only applied to "active" button element (pre-defined on each page) */
+        color: var(--color3);
+    }
+
+    nav#main .desktop a:hover {     /* Only applies to mouseover/hover */
+        color: var(--color2);
+    }
+
+
+    /* --- Mobile Fullscreen Burger Menu --- */
+
+    nav#burger-content {    /* [Only visible when clicked] -- The contents and design of the Burger Menu */
+        width: 100%;
+        height: 100vh;      /* Force height to take over the entire browser window */
+        position: fixed;    /* Forces the nav to stay in place and float on top no matter what */
+        z-index: 1;         /* Force element to be infront of everything else (default: 0) */
+        background-color: white;
+    }
+
+    nav#burger-content .container {
+        width: 75%;
+        margin-top: 170px;
+        margin-left: 5%;
+    }
+
+    nav#burger-content .container .logo img {
+        max-width: 80px;    /* Prevents the logo from becoming massive */
+    }
+
+    nav#burger-content .container ul {
+        list-style-type: none;      /* Removes bullet points */
+
+    }
+
+    nav#burger-content .container ul li {
+        border-bottom: var(--color1) solid 2px;     /* Seperate the links with a line */
+    }
+
+    nav#burger-content .container ul li:last-child {
+        border: none;   /* Fix issue with the last element */
+    }
+
+    nav#burger-content .container ul li a {
+        display: flex;      /* Align items next to eachother horizontally instead of vertically */
+        gap: 6px;
+        height: 54px;
+        color: black;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 1.2em;
+        align-items: center;
+    }
+
+    nav#burger-content .container ul li a .marker {
+        width: var(--nav-icon-size);    /* Uniformity with navbar icons */
+        height: var(--nav-icon-size);
+        background: none;   /* Hide pointer icon by default */
+        display: block;
+        background-position-x: -4px;    /* Fix icon alignment ever so slightly - only visible on hover */
+    }
+
+    nav#burger-content .container ul li a:hover .marker, nav#burger-content .container ul li a.active .marker {
+        background-image: url(img/icons/active-nav-item-icon.svg);      /* Display pointer icon on hover and on active element */
+    }
+
+
+/* end of navigation menu */
+
+
+
+
+
+
+
+
+
+/* ====== INDIVIDUAL PAGE CONTENTS ====== */
+
+    /* --- Repetitive stuff for sections and containers --- */
+
+    #intro, #process, #services, #project-phases, #project-list, #project-dev, #service-list, #booking-system, #prices, #about, #values, #find-dlb, #contact-info, #contact-form {   /* Fix sizing and alignment */
+        width: var(--default-width);
+        max-width: var(--max-page-width);
+        margin: auto;   /* Center element properly */
+    }
+
+    #process, #services, #service-list, #prices, #booking-system, #values, #contact-info, #contact-form {     /* Apply top margin */
+        margin-top: var(--default-top-margin);
+    }
+
+
+    /* --- FRONTPAGE Elements --- */
+
+    #welcome {
+        margin-top: -40px;
+    }
+    
+    #process video {        /* Video element on the frontpage */
+        width: 100%;    /* Allow video to be responsive */
+        margin-bottom: 10px;
+    }
+
+    #process video.desktop {    /* Hide Desktop video by default - This is handled by @media query below */
+        display: none;
+    }
+
+    #services {
+        text-align: center;
+    }
+
+    #services .container {
+        display: flex;
+        justify-content: center;
+        gap: 12px;
+        margin-top: 10px;
+    }
+
+    #services .container a {
+        width: 33%;
+        display: block;
+        text-decoration: none;
+        color: black;
+        text-align: center;
+        transition: .1s;    /* Smoothen hover effect */
+    }
+
+    #services .container a:hover {
+        transform: scale(1.05);     /* Effect - Scale to 105% on hover */
+    }
+
+    #services .container a img {
+        width: 100%;
+        font-size: 0;       /* Hide the stupid placeholder text visible when an image is missing */
+        margin-bottom: 12px;
+    }
+
+
+    /* --- PROJECTS Page Elements --- */
+
+    #project-phases .item {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        margin-top: 21px;
+    }
+
+    #project-phases .item img {
+        width: 46px;
+    }
+
+    #project-phases .item h2 {
+        font-size: 0.95em;
+        font-weight: 700;
+    }
+
+    #project-phases .item p {
+        font-size: 0.85em;
+    }
+
+    #project-list .container {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        text-align: center;
+    }
+
+    #project-list .item {
+        margin: 10px auto 30px auto;    /* Shorthand for: margin-top: 10px; margin-right: auto; margin-bottom: 30px; margin-left: auto; */
+        text-decoration: none;
+        color: white;
+        background-color: var(--color1);
+        background-position: center;    /* Fix background aligmnet */
+        background-size: cover;     /* Shrink background to fit */
+        background-repeat: no-repeat;   /* Turn off mechanic allowing background to "tile" */
+        width: 100%;
+        height: 46vw;   /* Flexible item width - set element size to 46% of browser window width */
+        transition: .1s;    /* Hover effect stuff */
+    }
+
+    #project-list .item h3 {
+        text-shadow: 0px 0px 18px black;
+        height: 30vw;      /* Pre-defined height allows for text lines to be pushed upwards instead of downwards */
+        display: flex;      /* This in itself shouldn't do anything, BUT it enables behavior below */
+        align-items: flex-end;      /* Bottom-aligns text so text gets pushed upwards instead of downwards */
+        justify-content: center;
+    }
+
+    #project-list .item span {
+        font-size: 0.65em;
+        font-weight: 600;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        padding: 6px 20px;
+        background-color: var(--color2);
+        display: block;
+        width: -moz-fit-content;    /* Added this because VScode spits out error otherwise, which annoys me a lot more than it should :D */
+        width: fit-content;     /* Actual magic; set the box width to *just* the width they need - nothing more/less */
+        margin: auto;
+        margin-top: 16px;
+    }
+
+    #project-list .item:hover {
+        transform: scale(1.05);
+    }
+
+    /* Define project portfolio images with background-image */
+    /* The radial gradient overlay has been created with https://html-css-js.com/css/generator/text-shadow/ */
+    /* While this may be a spammy way of doing it, I don't care, it works JUST like I want it to!! */
+        #stuehus-tureby       { background-image: radial-gradient(ellipse farthest-corner at center center, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0) 100%), url("img/projects/stuehus-tureby.jpg") }
+        #villa-karlslunde     { background-image: radial-gradient(ellipse farthest-corner at center center, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0) 100%), url("img/projects/villa-karlslunde.png") }
+        #koekken-faxe         { background-image: radial-gradient(ellipse farthest-corner at center center, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0) 100%), url("img/projects/koekken-faxe.png") }
+        #koekken-alleroed     { background-image: radial-gradient(ellipse farthest-corner at center center, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0) 100%), url("img/projects/koekken-alleroed.png") }
+        #b6-femern            { background-image: radial-gradient(ellipse farthest-corner at center center, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0) 100%), url("img/projects/b6-femern.png") }
+        #b5-femern            { background-image: radial-gradient(ellipse farthest-corner at center center, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0) 100%), url("img/projects/b5-femern.jpg") }
+        #tagreno-roskilde     { background-image: radial-gradient(ellipse farthest-corner at center center, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0) 100%), url("img/projects/tagreno-roskilde.png") }
+        #tilbygning-koege     { background-image: radial-gradient(ellipse farthest-corner at center center, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0) 100%), url("img/projects/tilbygning-koege.png") }
+        #droemmehus-jystrup   { background-image: radial-gradient(ellipse farthest-corner at center center, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0) 100%), url("img/projects/droemmehus-jystrup.jpg") }
+        #tilbygning-vaerloese { background-image: radial-gradient(ellipse farthest-corner at center center, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0) 100%), url("img/projects/tilbygning-vaerloese.jpg") }
+        #stuehus-slagelse     { background-image: radial-gradient(ellipse farthest-corner at center center, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0) 100%), url("img/projects/stuehus-slagelse.jpg") }
+
+
+    /* --- SERVICES Page Elements --- */
+    
+    #service-list .container {
+        margin-bottom: 44px;
+        width: 100%;
+    }
+    
+    #service-list span {
+        display: block;
+        height: 55vw;
+        background-color: var(--color1);     /* Fallback for when images load */
+        background-position: center;
+        background-size: cover;
+    }
+
+    #service-list .box {
+        width: 90%;
+        margin: auto;
+        background-color: white;
+        border: var(--color3) solid 2px;
+        padding: 20px;
+        font-size: 0.82em;
+        line-height: 1.3em;
+        margin-top: -50px;
+    }
+
+    #service-list h2 {
+        margin-bottom: 14px;
+        font-size: 1.5em;
+    }
+
+    /* Define background images */
+    #proj-dev-service       { background-image: url("img/thumbnails/proj-dev-service.jpg") }
+    #consultation-service   { background-image: url("img/thumbnails/consultation-service.jpg") }
+    #sketching-service      { background-image: url("img/thumbnails/sketching-service.jpg") }
+    
+
+    /* --- BOOKING Page Elements --- */
+    
+    #booking-system .container {
+        background-color: white;
+        border: 2px var(--color3) solid;
+        padding: 12px;
+        margin: 10px auto;
+    }
+
+    #booking-system .segment, #contact-form .segment {
+        margin-bottom: 25px;
+    }
+
+    #booking-system .text-container, #booking-system label, #contact-form label {
+        font-size: 0.8em;
+        font-family: var(--font);
+    }
+
+    #booking-system .text-container {
+        display: flex;
+        gap: 5px;
+    }
+
+    #booking-system .required, #contact-form .required {
+        font-size: 14px;
+        color: red;
+        font-weight: 600;
+    }
+
+    #booking-system .button-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    #booking-system .button-container button {
+        background-color: var(--color1);
+        color: black;
+        border: none;
+        font-size: 0.64em;       /* Reduce font size - I use EM instead of PX here, as EM is relative and scale better on mobile browsers*/  
+        padding: 7px;
+        letter-spacing: 0.1em;     /* Adds a little spacing between individual letters for legibility reasons */
+        text-decoration: none;
+        transition: 0.2s;    /* Used with hover effect */
+        cursor: pointer;
+        transition: .1s;
+        border-radius: 6px;
+        text-transform: uppercase;
+        font-weight: 700;
+    }
+
+    #booking-system .button-container button:hover {
+        background-color: var(--color3);
+        color: white;
+    }
+
+    #booking-system .button-container button.active {
+        background-color: var(--color2);
+        color: white;
+    }
+
+    #booking-system input, #booking-system textarea, #booking-system select, #contact-form input, #contact-form textarea, #contact-form select {
+        width: 100%;
+        border: 2px var(--color3) solid;
+        padding: 8px;
+        font-family: var(--font);
+        font-weight: 600;
+    }
+
+    #booking-system .flex-container, #contact-form .flex-container {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+
+    #booking-system .flex-container .segment, #contact-form .flex-container .segment {
+        width: 48%;
+    }
+
+    #booking-system select {
+        width: 100%;
+    }
+
+    #booking-system select option {
+        padding: 5000px !important;
+    }
+
+    #booking-system .button, #contact-form .button {
+        width: -moz-fit-content;
+        width: fit-content;
+        margin: auto;
+    }
+
+    #booking-system .container .complete, #contact-form .complete {      /* Style elements triggered when User Journey is complete */
+        padding: 151px 0;
+        text-align: center;
+    }
+
+    #booking-system .container .complete img, #contact-form .complete img { 
+        width: 100%;
+        max-width: 60px;
+        margin-bottom: 20px;
+    }
+
+    #prices {
+        text-align: center;
+    }
+
+    #prices .flex-container {
+        margin-top: 10px;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 14px;
+    }
+
+    #prices .flex-container .container {
+        width: 25%;
+    }
+
+    #prices .container img {
+        width: 72%;
+        max-width: 64px;
+        margin: auto;
+        font-size: 0;   /* Remove placeholder text when image is missing */
+        display: block;
+    }
+
+    #prices .container h2 {
+        font-size: 0.9em;
+        text-align: center;
+        margin: 6px 0;
+    }
+
+    #prices .container p {
+        font-size: 0.8em;
+        margin-bottom: 9px;
+    }
+    
+
+    /* --- ABOUT Page Elements --- */
+
+    #about .flex {
+        display: flex;
+        justify-content: space-between;
+        gap: 6vw;
+    }
+
+    #about img {
+        width: 100%;
+        margin-top: 20px;
+    }
+
+    #about button {
+        width: 100%;
+        text-align: center;
+        justify-content: center;
+        text-align: center;
+        margin: auto;
+    }
+
+    #values .text-container {
+        max-width: calc(var(--max-page-width) / 2 );
+        margin: auto;
+        margin-bottom: var(--default-top-margin);
+    }
+
+    #values .gallery {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 14px;
+        justify-content: center;
+    }
+    
+    #values .gallery img {
+        width: 47%;
+    }
+    
+
+    /* --- CONTACT Page Elements --- */
+    
+    #find-dlb img {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    #find-dlb .info {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 10px;
+        margin-top: 40px;
+        max-width: 360px;
+    }
+
+    #find-dlb .info .container {
+        margin: auto;
+        display: flex;
+        justify-content: center;
+        text-decoration: none;
+        font-size: 0.9em;
+        color: black;
+        align-items: center;
+    }
+    
+    #find-dlb .info .container img {
+        max-width: 48px;
+        margin-top: -6px;
+        margin-bottom: 0;
+    }
+    
+    #contact-info .map-container {
+        justify-content: center;
+        margin-top: 10px;
+    }
+    
+    #contact-info .opening-hours {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+
+    #contact-info .opening-hours p {
+        width: 50%;
+        font-size: 1em;
+        line-height: 1.5em;
+    }
+
+    #contact-info .opening-hours p.closed {
+        color: var(--color2);
+        font-weight: 600;
+    }
+
+    #contact-info .opening-hours p:nth-child(even) {
+        text-align: right;
+    }
+
+    #contact-info #google-maps {
+        margin-top: 30px;
+        width: 100%;
+    }
+    #contact-info #google-maps iframe {
+        width: 100%;    /* Handle the iframe width in CSS because doing it in HTML simply doesn't work as intended */
+        height: 60vw;   /* Handle the iframe height in CSS because doing it in HTML is a war crime :D */
+        border: 0;
+    }
+
+    /* 
+        !!! Contact form code tied into the Booking System code for conosistency reasons !! 
+    */
+
+    #contact-form h2 {
+        margin-bottom: 10px;
+    }
+
+    #contact-form .complete {      /* Style elements triggered when User Journey is complete */
+        padding: 71px 0;
+    }
+
+/* (end of individual page content) */
+
+
+
+
+
+
+
+
+
+
+/* ====== FOOTER START ====== */
+
+    footer {
+        background-color: white;
+        padding: var(--default-top-margin) 0;
+        padding-bottom: calc(var(--default-top-margin) / 2);
+        font-size: 0.9em;
+        text-align: center;
+        margin-top: calc(var(--default-top-margin) + 20px);      /* This looks fucked, but all it does it that it adds 20px to default margin value for aesthetical reasons*/
+    }
+
+    footer section {
+        display: flex;
+        justify-content: space-between;      /* Works a bit like space-between, but it respects the space on the outer borders */
+        margin: auto;
+        align-items: center;
+        max-width: var(--max-page-width);
+        width: var(--default-width);
+    }
+
+    footer .SoMe {
+        gap: 12px;
+        display: flex;
+    }
+
+    footer .SoMe a {
+        display: flex;   /* Align SoMe icons correctly */
+        font-size: 0;    /* Hide text only there for the sake of screen readers */
+        max-width: var(--nav-icon-size);    /* More uniformity with the navbar icons */
+    }
+
+    footer .SoMe img {
+        width: 100%;
+    }
+
+    footer .address {
+        width: 80%;
+        margin: auto;
+        margin-top: 18px;
+        justify-content: center;
+        gap: 12px;
+    }
+
+    footer .address img {
+        width: calc(var(--nav-icon-size) / 1.5);
+    }
+
+/* end of footer */
+
+
+
+
+
+
+
+
+/* W3S SLIDER        https://www.w3schools.com/howto/howto_js_slideshow.asp  */
+
+/* Slideshow container */
+#intro .slider {
+    padding-bottom: var(--default-top-margin);
+}
+  
+  /* Hide the images by default */
+  .mySlides {
+    display: none;
+  }
+
+  .slider .prev, .slider .next {
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1.3em;
+    transition: 0.6s ease;
+    background-color: var(--color3);
+    color: white;
+    padding: 5px 8px;
+    opacity: 0.7;
+  }
+  
+  /* On hover, add a black background color with a little bit see-through */
+  .prev:hover, .next:hover {
+    background-color: var(--color2);
+    transition: none;
+    color: white;
+    opacity: 1;
+  }
+  
+  /* The dots/bullets/indicators */
+  .dot {
+    cursor: pointer;
+    height: 15px;
+    width: 15px;
+    margin: 0 3px;
+    background-color: var(--color1);
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.3s ease;
+  }
+  
+  .slider .active, .dot:hover {
+    background-color: var(--color2)
+  }
+
+  .slider img {
+    width: 100%;
+  }
+
+  .slider .buttons {
+    display: flex;
+    justify-content: space-between;
+    width: var(--default-width);
+    margin: auto;
+    margin-top: -30vw;
+    margin-bottom: calc(30vw + -36px);
+    z-index: 2;
+  }
+
+  .slider .dots {
+    text-align: center;
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ====== MEDIA QUERIES - SCALE CONTENT FOR BIGGER DEVICES ======*/
+
+@media screen and (min-width: 1024px) {     /* --- Laptop --- */
+
+   /* ====== CSS VARIABLES START ====== */
+
+        :root {             /* Update relevant CSS variables */
+            /* Margins - To streamline left-right margins for mis.c objects */
+                --default-width: 80%;
+                --max-page-width: 980px;
+            /* Miscelanious - Sizes of common elements, etc */
+                --nav-icon-size: 32px;
+                --default-top-margin: 80px;
+        }
+
+        main#fneh {
+            margin-bottom: calc(var(--default-top-margin) * -1);
+        }
+
+    /* end of css variables */
+
+
+
+
+    /* ====== MAIN PAGE ELEMENTS ====== */
+
+        .cta .button, #booking-system .button, #contact-form .button {
+            font-size: 0.9em;
+            padding: 15px;
+            letter-spacing: 0.07em;
+            max-width: 200px;
+        }
+
+    /* (end of main page elements) */
+   
+   
+
+
+    /* ====== NAVIGATION MENU START ====== */
+
+        nav#main .container {
+            flex-direction: row-reverse;
+            justify-content: space-between;
+        }
+
+        nav#main .logo {
+            margin: 0;
+            width: unset;
+        }
+
+        nav#main .desktop {
+            display: flex;
+        }
+
+        
+        /* --- Burger Menu --- */
+        
+        nav#main .burger-menu {
+            display: none;
+        }
+    
+    /* end of navigation menu */
+
+    
+
+
+    /* ====== INDIVIDUAL PAGE CONTENTS ====== */
+
+        /* --- Repetitive stuff for sections and containers --- */
+
+        #process, #services, #project-phases, #project-list, #project-dev, #service-list, #booking-system, #prices, #about, #values, #find-dlb, #contact-info, #contact-form {   /* Fix sizing and alignment */
+            width: var(--default-width);
+            margin: auto;   /* Center element properly */
+            max-width: var(--max-page-width);
+        }
+
+        #services, #project-list, #prices, #values, #booking-system, #contact-info, #contact-form {     /* Apply top margin */
+            margin-top: var(--default-top-margin);
+        }
+
+
+        /* --- FRONTPAGE Elements --- */
+
+        #intro {
+            display: flex;
+            flex-direction: row-reverse;
+            align-items: center;
+            gap: 2vw
+        }
+
+        #welcome {
+            margin-top: 0;
+            margin-bottom: 30px;
+        }
+        
+        #process {
+            margin-top: var(--default-top-margin);
+            display: flex;
+            align-items: center;
+            gap: 2vw;
+            justify-content: space-between;
+        }
+
+        #process div {
+            width: 50%;
+        }
+
+        #process .video {
+            width: 50%;
+        }
+        
+        #process video {
+            width: 100%;    /* Allow video to be responsive */
+            margin-bottom: 10px;
+        }
+
+        #process video.mobile {
+            display: none;
+        }
+
+        #process video.desktop {
+            display: block;
+        }
+
+        #services .container {
+            gap: 18px;
+        }
+
+        #services .container a {
+            max-width: 190px;
+        }
+
+
+        /* --- PROJECTS Page Elements --- */
+
+        #project-phases .main-container {
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        #project-phases .item {
+            width: 32%;
+            font-size: 1em;
+        }
+
+        #project-phases .item img {
+            width: 100%;
+            max-width: 54px;
+        }
+
+        #project-list {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            text-align: center;
+        }
+
+        #project-list .item {
+            width: 31%;
+            height: 160px;   /* Flexible item width - set element size to 46% of browser window width */
+            margin: 6px;
+        }
+
+        #project-list .item h3 {
+            height: 100px;
+            font-size: 0.9em;
+        }
+
+
+        /* --- SERVICES Page Elements --- */
+        
+        #project-dev {
+            max-width: calc(var(--max-page-width) / 2.5);
+            margin-bottom: var(--default-top-margin);
+        }
+        
+        #service-list {
+            display: flex;
+            gap: 3%;
+        }
+        
+        #service-list span {
+            display: block;
+            height: 200px;
+            background-color: var(--color1);     /* Fallback for when images load */
+            background-position: center;
+            background-size: cover;
+        }
+
+        #service-list .box {
+            width: 100%;
+            background: none;
+            border: none;
+            padding: 0;
+            font-size: 0.9em;
+            margin-top: 20px;
+        }
+
+
+
+        /* --- BOOKING Page Elements --- */
+    
+        #booking-system {
+            text-align: center;
+        }
+        
+        #booking-system .container {
+            text-align: left;
+            padding: 24px;
+            max-width: calc(var(--max-page-width) / 2);
+        }
+
+        #booking-system .text-container, #booking-system label, #contact-form label {
+            font-size: 1.1em;
+            line-height: 2em;
+        }
+
+        #booking-system .button-container {
+            gap: 12px;
+        }
+
+        #booking-system .button-container button {
+            font-size: 0.75em;       /* Reduce font size - I use EM instead of PX here, as EM is relative and scale better on mobile browsers*/  
+            padding: 9px;
+        }
+
+        #prices .flex-container {
+            flex-wrap: nowrap;
+            max-width: calc(var(--max-page-width) / 1.3);
+            margin: auto;
+        }
+
+        #prices .flex-container .container {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            text-align: left;
+        }
+        
+        #prices .container h2 {
+            font-size: 1em;
+            text-align: left;
+            margin-bottom: 4px;
+        }
+
+        #prices .container p {
+            font-size: 0.9em;
+            margin-bottom: 6px;
+        }
+
+        #prices .container div {
+            width: 70%;
+        }
+
+
+        /* --- ABOUT Page Elements --- */
+        
+        #about {
+            margin: auto;
+            max-width: calc(var(--default-width) / 1.62)
+        }
+
+        #about .flex {
+            display: block;
+        }
+        
+        #about img {
+            width: 100%;
+            max-width: 200px;
+            float: right;       /* In this case flexbox doesn't do what I want, so I use this instead */
+            margin-top: -120px;
+        }
+        
+        #about button {
+            position: relative;
+            float: right;
+            margin-right: -186px;
+            margin-top: 74px;
+        }
+
+        #about p {
+            margin-right: 280px;    /* Hacky way to make the text respect the image with float */
+        }
+
+        #values {
+            max-width: var(--max-page-width);
+        }
+
+        #values .gallery {
+            display: flex;
+            flex-wrap: nowrap;
+            gap: 12px;
+            justify-content: space-between;
+        }
+
+        #values .gallery img {
+            width: 30%;
+        }
+
+        /* --- CONTACT Page Elements --- */
+
+        #find-dlb {
+            width: var(--default-width);
+            max-width: var(--max-page-width);
+            display: flex;
+            flex-direction: row-reverse;
+            align-items: center;
+            justify-content: space-between;
+            gap: 6%;
+        }
+        
+        #find-dlb img {
+            width: 50%;
+            margin: auto;
+        }
+    
+        #find-dlb .info {
+            margin-left: -10px;
+            flex-wrap: wrap;
+        }
+    
+        #find-dlb .info .container {
+            margin: unset;
+            margin-right: auto;
+            gap: 6px;
+            max-width: 170px;
+        }
+
+        #find-dlb .info .container:last-child {
+            max-width: unset;
+            width: 100%;
+        }
+        
+        #find-dlb .info .container img {
+            max-width: 48px;
+        }
+
+        #find-dlb .info .container p {
+            width: 100%;
+        }
+        
+        #contact-info .map-container {
+            display: flex;
+        }
+        
+        #contact-info .opening-hours {
+            width: 50%;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-right: 7%;
+        }
+    
+        #contact-info .opening-hours p {
+            width: 50%;
+            font-size: 1em;
+            line-height: 1.5em;
+        }
+    
+        #contact-info #google-maps {
+            margin: 0;
+            margin-bottom: -5px;
+            width: 100%;
+        }
+
+        #contact-info #google-maps iframe {
+            margin: 0;
+            height: 200px;
+        }
+
+        #contact-form {
+            max-width: calc(var(--max-page-width) / 2);
+        }
+        
+    /* (end of individual page contents) */
+
+
+
+
+    /* ====== FOOTER START ====== */
+
+        footer div:first-child {
+            text-align: left;
+        }
+
+        footer div:last-child {
+            text-align: right;
+        }
+
+    /* end of footer */
+
+
+
+
+    /* ===== W3S SLIDER ======*/
+    #intro .slider {
+        padding: 0;
+    }
+    
+      .slider .prev, .slider .next {
+        font-size: 1.6em;
+      }
+    
+      .slider .buttons {
+        display: flex;
+        justify-content: space-between;
+        width: 95%;
+        margin: auto;
+        margin-top: -32%;
+        margin-bottom: calc(30% + -26px);
+        z-index: 2;
+      }
+    /* end of slider */
+}
+
+
+
+@media screen and (min-width: 1800px) {
+    :root {            /* Update relevant CSS variables */
+        /* Margins - To streamline left-right margins for mis.c objects */
+            --default-width: 60%;
+            --max-page-width: 1400px;
+        /* Miscelanious - Sizes of common elements, etc */
+            --nav-icon-size: 36px;
+            --default-top-margin: 100px;
+    }
+
+    h1, h2 {
+        font-size: 1.6em;       /* Adjusts font size for headings */
+    }
+
+    #project-list .item {
+        height: 220px;   /* Flexible item width - set element size to 46% of browser window width */
+        margin: 8px;
+    }
+
+    #project-list .item h3 {
+        height: 120px;
+        font-size: 1.2em;
+    }
+
+    #project-list .item span {
+        font-size: 0.75em;
+        letter-spacing: 0.08em;
+        padding: 8px 20px;
+        margin-top: 44px;
+    }
+}

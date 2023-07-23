@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">      <!-- Responsive scaling for mobile devices -->
+    <link rel="icon" type="favicon" href="img/logo.jpg">
+    <!-- SEO START -->
+        <title>DLB ARKITEKTER ApS - Dan Betak</title>     <!-- SEO page title -->
+        <meta name="description" content="DLB Arkitekter ApS - Vores proces er vores varemærke. Vi har 10+ års erfaring med projektudvikling, skitsering og planlægning.">    <!-- SEO description -->
+        <meta name="theme-color" content="#F5F5F5">      <!-- Theme color for SoMe -->
+        <!-- vvv Open Graph Protocol - Source: https://ogp.me/ -->
+            <meta property="og:image" content="https://exam.mikkl.info/img/thumbnails/SoMe/frontpage.jpg" />     <!-- Image to feed SoMe previews -->
+            <meta property="og:image:width" content="750" />   
+            <meta property="og:image:height" content="750" />
+            <meta property="og:locale" content="da_DK">
+            <meta property="og:type" content="website">     <!-- Define which type of content this website is -->
+            <meta property="og:title" content="DLB Arkitekter - Vi kan hjælpe">   <!-- Title for SoMe previews -->
+            <meta property="og:description" content="DLB Arkitekter ApS - Vores proces er vores varemærke. Vi har 10+ års erfaring med projektudvikling, skitsering og planlægning.">     <!-- Description for SoMe previews -->
+            <meta property="og:url" content="https://DLBark.dk">    <!-- Clean up URL for SoMe previews -->
+            <meta property="og:site_name" content="DLB Arkitekter ApS">
+        <!-- ^^^ End of Open Graph Protocol -->
+    <!-- END OF SEO -->  
+    
+    <!-- LOCAL REFERENCES START -->
+        <link rel="stylesheet" href="style.css">    <!-- Main CSS reference -->
+        <script src="js/main.js"></script>  <!-- Main JS reference -->
+        <script defer src="js/slideshow.js"></script>
+    <!-- END OF LOCAL REFERENCES -->
+
+</head>
+
+
+
+
+<body>
+
+    <nav id="burger-content" class="hidden">    <!-- Mobile full-screen burger menu content - Hidden by defualt -->
+        <div class="container">
+            <a href="index.html" class="logo"> <img src="img/logo.jpg" alt="DLB Arkitekter logo"> DLB Arkitekters logo </a>  <!-- DLB Logo -->
+
+            <ul>
+                <li> <a href="index.html" class="active"> <span class="marker"></span> Hjem</a> </li>
+                <li> <a href="projects.html"> <span class="marker"></span> Projekter</a> </li>
+                <li> <a href="services.html"> <span class="marker"></span> Tjenester</a> </li>
+                <li> <a href="booking.html"> <span class="marker"></span> Booking</a> </li>
+                <li> <a href="about.html"> <span class="marker"></span> Om os</a> </li>
+                <li> <a href="contact.html"> <span class="marker"></span> Kontakt</a> </li>
+            </ul>
+        </div>
+    </nav>
+
+
+
+    <nav id="main">   <!-- Main navigation -->
+        <div class="container">     <!-- This container fixes issues as the 'nav' tag has 'position: fixed' which likes to fuck with things -->
+            
+            <div class="SoMe">  <!-- SoMe links and icons -->
+                <a href="https://www.facebook.com/DLBARKITEKTERApS" target="_blank" rel="noopener nofollow"> <img src="img/icons/facebook-icon.svg" alt="Facebook ikon"> Besøg DLB's Facebookside </a>   <!-- target="_blank" = Open in a new Tab    rel="nofollow" = Tell Google not to follow the link -->
+                <a href="https://www.instagram.com/dlbarkitekter" target="_blank" rel="noopener nofollow"> <img src="img/icons/instagram-icon.svg" alt="Instagram ikon"> Besøg DLB's Instagram </a>
+                <a href="https://www.linkedin.com/company/dlbetak-aps/about/" target="_blank" rel="noopener nofollow"> <img src="img/icons/linkedin-icon.svg" alt="LinkedIn ikon"> Besøg DLB's LinkedIn-side</a>
+            </div>
+            <!---SOME ICONS ARE FROM: https://www.flaticon.com/-->
+
+            <ul class="desktop">    <!-- Navigation Menu only visible on Desktop -->
+                <li> <a href="index.html" class="active">Hjem</a> </li>
+                <li> <a href="projects.html">Projekter</a> </li>
+                <li> <a href="services.html">Tjenester</a> </li>
+                <li> <a href="booking.html">Booking</a> </li>
+                <li> <a href="about.html">Om os</a> </li>
+                <li> <a href="contact.html">Kontakt</a> </li>
+            </ul>
+            
+            <a href="index.html" class="logo"> <img src="img/logo.jpg" alt="DLB Arkitekter logo"> DLB Arkitekters logo </a>  <!-- DLB Logo -->
+            
+            <button class="burger-menu" onclick="toggleBurgerMenu()"> <img src="img/icons/burger-menu-icon.svg" alt="Burgermenu knap"> Menu </button>
+        </div>
+    </nav>
+
+
+
+    <main id="intro">
+        <div class="slider">
+            <div class="slideshow-container">
+                <!-- Full-width images with number and caption text -->
+                <div class="mySlides fade">
+                  <img src="img/slider/1.jpg" alt="DLB arkitekter skitserer">
+                </div>
+              
+                <div class="mySlides fade">
+                  <img src="img/slider/3.jpg" alt="DLB arkitekter foresmag på interiør">
+                </div>
+              
+                <div class="mySlides fade">
+                  <img src="img/slider/4.jpg" alt="DLB atkitekter 3D skitse">
+                </div>
+              
+                <!-- Next and previous buttons -->
+                <div class="buttons">
+                    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                    <a class="next" onclick="plusSlides(1)">&#10095;</a>
+                </div>
+            </div>
+              
+              <!-- The dots/circles -->
+            <div class="dots">
+                <span class="dot" onclick="currentSlide(1)"></span>
+                <span class="dot" onclick="currentSlide(2)"></span>
+                <span class="dot" onclick="currentSlide(3)"></span>
+            </div>
+        </div>
+
+        <section id="welcome">
+            <h1>Vi er DLB Arkitekter</h1>
+            <p class="textbox">Velkommen til vores hjemmeside!</p>
+            <p class="textbox">Vi har en bred portefølje af projekter inden for bolig-, erhvervs-, institutions- og kultur-byggeri, samt byplanlægning og landskabsarkitektur.</p>
+            <p class="textbox">Vores vision handler om at skabe løsninger, der bidrager til at forbedre livskvaliteten for vores kunder.</p>
+        </section>
+    </main>
+
+
+    <section id="process">
+        <section class="video">
+            <video controls class="mobile">
+                <source src="video/DLB-animation-mobile.mp4" type="video/mp4">
+            </video>
+            <video controls class="desktop">
+                <source src="video/DLB-animation-pc.mp4" type="video/mp4">
+            </video>
+
+            <!-- Videos above is created by Emil Schildknecht Nielsen during the Das Büro theme here on Zealand, and concluded the previous Case Partnership with DLB Arkitekter. -->
+            <!-- The videos were handed over to DLB after the theme deadline was reached -->
+        </section>
+
+        <div>
+            <h1>Vores arbejdsprocess</h1>
+            <p class="textbox">Arbejdsprocessen er vores varemærke. Gennem vores faste proces og omhyggelige og detaljerede plan-lægning er vi i stand til at levere det fulde spektrum af arkitektydelser til en fast konkurrencedygtig pris, uanset projektets størrelse!</p>
+            <p class="textbox">Du får de fulde arkitektydelser på cirka samme måde, som havde du bestilt et typehus!</p>
+            <p class="textbox">Vi starter helt fra bunden. Kontakt DLB Arkitekter til et gratis uforpligtende møde – så kan vi i fællesskab komme det hele til bunds og få arbejdet med jeres ønsker og idéer.</p>
+        </div>
+    </section>
+
+
+    <section id="services">
+        <h2>Hvad vi tilbyder</h2>
+        <div class="container">
+            <a href="#">
+                <img src="img/thumbnails/proj-udvikling.jpg" alt="Projektudvikling">
+                <p>Projekt&shy;udvikling</p>
+            </a>
+            <a href="#">
+                <img src="img/thumbnails/ark-konsultation.jpg" alt="Arkitektkonosultation">
+                <p>Arkitekt&shy;konsul&shy;tation</p>
+            </a>
+            <a href="#">
+                <img src="img/thumbnails/sven-mieke-fteR0e2BzKo-unsplash.jpg" alt="Skitseforslag">
+                <p>Skitse&shy;forslag</p>
+            </a>
+        </div>
+    </section>
+
+
+    <section class="cta">
+        <h2>Vi kan hjælpe dig</h2>
+        <div class="container">
+            <a href="projects.html" class="button">Projekt&shy;portefølje</a>
+        </div>
+    </section>
+
+
+    <footer>
+        <section>
+            <div>
+                <h3>Kontakt</h3>
+                <p>22 88 91 35</p>
+            </div>
+
+            <div class="SoMe">
+                <!---Icon source: https://www.flaticon.com/-->
+                <a href="https://www.facebook.com/DLBARKITEKTERApS" target="_blank" rel="noopener nofollow"> <img src="img/icons/facebook-icon.svg" alt="Facebook ikon"> Besøg DLB's Facebookside </a>   <!-- target="_blank" = Open in a new Tab    rel="nofollow" = Tell Google not to follow the link -->
+                <a href="https://www.instagram.com/dlbarkitekter" target="_blank" rel="noopener nofollow"> <img src="img/icons/instagram-icon.svg" alt="Instagram ikon"> Besøg DLB's Instagram </a>
+                <a href="https://www.linkedin.com/company/dlbetak-aps/about/" target="_blank" rel="noopener nofollow"> <img src="img/icons/linkedin-icon.svg" alt="LinkedIn ikon"> Besøg DLB's LinkedIn-side</a>
+            </div>
+
+            <div>
+                <h3>CVR</h3>
+                <p>40743464</p>
+            </div>
+        </section>
+
+        <section class="address">
+            <img src="img/icons/gps-icon.svg" alt="DLB Arkitekter's adresse">
+            <p>Ahlgade 63, 4300 Holbæk, Danmark</p>
+        </section>
+    </footer>
+
+
+</body>
+</html>
